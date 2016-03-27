@@ -36,7 +36,8 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.btnOpenWord = new System.Windows.Forms.Button();
+            this.metroButton1 = new MetroFramework.Controls.MetroButton();
+            this.btnOpenWord = new MetroFramework.Controls.MetroButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -125,16 +126,25 @@
             this.pictureBox3.TabIndex = 7;
             this.pictureBox3.TabStop = false;
             // 
+            // metroButton1
+            // 
+            this.metroButton1.Location = new System.Drawing.Point(0, 0);
+            this.metroButton1.Name = "metroButton1";
+            this.metroButton1.Size = new System.Drawing.Size(75, 23);
+            this.metroButton1.TabIndex = 0;
+            this.metroButton1.UseSelectable = true;
+            // 
             // btnOpenWord
             // 
-            this.btnOpenWord.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnOpenWord.Location = new System.Drawing.Point(250, 12);
+            this.btnOpenWord.Location = new System.Drawing.Point(250, 13);
             this.btnOpenWord.Name = "btnOpenWord";
             this.btnOpenWord.Size = new System.Drawing.Size(415, 32);
-            this.btnOpenWord.TabIndex = 8;
+            this.btnOpenWord.Style = MetroFramework.MetroColorStyle.Brown;
+            this.btnOpenWord.TabIndex = 9;
             this.btnOpenWord.Text = "Відкрити Excel файл";
-            this.btnOpenWord.UseVisualStyleBackColor = true;
-            this.btnOpenWord.Click += new System.EventHandler(this.btnOpenWord_Click);
+            this.btnOpenWord.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.btnOpenWord.UseSelectable = true;
+            this.btnOpenWord.Click += new System.EventHandler(this.btnOpenWord_Click_1);
             // 
             // Features
             // 
@@ -152,7 +162,6 @@
             this.Controls.Add(this.label1);
             this.MaximumSize = new System.Drawing.Size(920, 400);
             this.Name = "Features";
-            this.Text = "Manipulation of excel file";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -171,7 +180,8 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.Button btnOpenWord;
+        private MetroFramework.Controls.MetroButton metroButton1;
+        private MetroFramework.Controls.MetroButton btnOpenWord;
     }
 }
 

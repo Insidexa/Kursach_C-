@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using MetroFramework.Forms;
 
 namespace Kursach
 {
-    public partial class Features : Form
+    public partial class Features : MetroForm
     {
         public Features()
         {
             InitializeComponent();
+
         }
 
-        private void btnOpenWord_Click(object sender, EventArgs e)
+        private void btnOpenWord_Click_1(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialogExcel = new OpenFileDialog();
 

@@ -2,62 +2,69 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Drawing;
 using System.Windows.Forms;
 
 using Excel = Microsoft.Office.Interop.Excel;
+using MetroFramework.Forms;
 
 namespace Kursach
 {
-    public partial class Main : Form
+    public partial class Main : MetroForm
     {
         const int BY_BAL = 1;
         const int BY_BAL_AND_SCHOOL = 0;
 
-        private int typeForm = 0;
+        private int typeForm;
 
-        private Excel.Application excelApp;
-        private Excel.Workbook excelWorkbook;
+        private List<UserStruct> userData;
+        private List<UserStruct> searchUserData;
 
-        private Excel.Sheets excelSheets;
-        private Excel.Worksheet excelWorksheet;
-        private Excel.Range xlRange;
-
-        private List<Results> userData;
-        private List<Results> searchUserData;
-
-        object[,] valueCell;
+        private ExcelManipulation excelApp;
+        private WordManipulation wordApp;
 
         public Main()
         {
             InitializeComponent();
 
-            this.excelApp = new Excel.Application();
-            this.excelApp.Visible = false;
+            this.wordApp = new WordManipulation();
 
-            this.userData = new List<Results>();
-            this.searchUserData = new List<Results>();
+            this.userData = new List<UserStruct>();
+            this.searchUserData = new List<UserStruct>();
+
+            this.typeForm = 0;
 
             panelSelectByBal.Hide();
+        }
 
+        /// <summary>
+        /// Replace string.IsNullOrWhiteSpace
+        /// string.IsNullOrWhiteSpace does not exists in NET Framework < 4
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        private bool IsNullOrWhiteSpace(string data)
+        {
+            if ((data == null) || (data == "")) {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public void runApplication(string pathToExcel)
         {
             try
             {
-                this.excelWorkbook = this.excelApp.Workbooks.Open(pathToExcel,
-                       0, false, 5, "", "", false, Excel.XlPlatform.xlWindows, "",
-                       true, false, 0, true, false, false);
+                this.excelApp = new ExcelManipulation(pathToExcel);
 
-                this.initializeWorkSheet();
-                List<Results> localUserData = this.readDataFromExcel();
-                this.closeExcelApplication();
+                this.userData = this.excelApp.readDataFromExcel();
+                this.setDataInDataGridView(this.userData);
 
-                this.setDataInDataGridView(localUserData);
+                this.excelApp.closeExcelApplication();
 
             }
             catch (Exception e)
@@ -69,7 +76,7 @@ namespace Kursach
             }
         }
 
-        private void setDataInDataGridView(List<Results> localUserData, int row = 10)
+        private void setDataInDataGridView(List<UserStruct> localUserData, int row = 10)
         {
             dataGridView.Rows.Clear();
             int counter = 1;
@@ -79,60 +86,6 @@ namespace Kursach
                 dataGridView.Rows.Add(counter, localUserData[i].name, localUserData[i].bal, localUserData[i].numberSchool);
                 counter++;
             }
-        }
-
-        private void closeExcelApplication()
-        {
-            this.excelWorkbook.Close(0);
-
-            this.excelApp.Quit();
-            System.Runtime.InteropServices.Marshal.ReleaseComObject(this.excelApp);
-        }
-
-        private List<Results> readDataFromExcel()
-        {
-            for (int row = 1; row < this.excelWorksheet.UsedRange.Rows.Count; row++)
-            {
-                Results results;
-                results.bal = 0;
-                results.numberSchool = 0;
-                results.name = "";
-
-                for (int col = 1; col <= this.excelWorksheet.UsedRange.Columns.Count; col++)
-                {
-                    if (this.valueCell[row, col] != null)
-                    {
-
-                        if (col == 1)
-                        {
-                            results.name = this.valueCell[row, col].ToString();
-                        }
-
-                        if (col == 2)
-                        {
-                            results.bal = Convert.ToInt32(this.valueCell[row, col].ToString());
-                        }
-
-                        if (col == 3)
-                        {
-                            results.numberSchool = Convert.ToInt32(this.valueCell[row, col].ToString());
-                        }
-
-                    }
-                }
-
-                this.userData.Add(results);
-            }
-
-            return this.userData;
-        }
-
-        private void initializeWorkSheet()
-        {
-            this.excelSheets = this.excelWorkbook.Worksheets;
-            this.excelWorksheet = this.excelWorkbook.Sheets[1];
-            this.xlRange = this.excelWorksheet.UsedRange;
-            this.valueCell = (object[,])this.xlRange.get_Value(Excel.XlRangeValueDataType.xlRangeValueDefault);
         }
 
         private void btnSelectByBal_Click(object sender, EventArgs e)
@@ -152,59 +105,54 @@ namespace Kursach
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            // TODO: save results (this.searchUserData) to word file
-            // add check if zero records in list
+            this.wordApp.saveToFile("", "");
         }
 
         private void btnFind_Click(object sender, EventArgs e)
         {
             this.searchUserData.Clear();
 
-            for (int i = 1; i < 10; i++)
+            for (int i = 0; i < this.userData.Count; i++)
             {
-                if (this.typeForm == BY_BAL)
+                switch (this.typeForm)
                 {
-                    int bal = Convert.ToInt32(tbBal2.Text.ToString());
-                    if (userData[i].bal >= bal)
-                    {
-                        this.searchUserData.Add(userData[i]);
-                    }
-                }
-                if (this.typeForm == BY_BAL_AND_SCHOOL)
-                {
-                    int bal = Convert.ToInt32(tbBal1.Text.ToString());
-                    int numberSchool = Convert.ToInt32(tbNumberSchool.Text.ToString());
+                    case BY_BAL:
+                        int bal = Convert.ToInt32(tbBal2.Text);
+                        if (this.IsNullOrWhiteSpace(tbBal2.Text)) MessageBox.Show("Введіть значення умови");
+                        else if (userData[i].bal >= bal) 
+                            this.searchUserData.Add(userData[i]);
+                        break;
+                    case BY_BAL_AND_SCHOOL:
+                        if ((this.IsNullOrWhiteSpace(tbBal1.Text)) || (this.IsNullOrWhiteSpace(tbNumberSchool.Text))) MessageBox.Show("Введіть значення умови");
+                        else
+                        {
+                            int _bal = Convert.ToInt32(tbBal1.Text);
+                            int numberSchool = Convert.ToInt32(tbNumberSchool.Text);
 
-                    if ((userData[i].bal >= bal) && (userData[i].numberSchool == numberSchool))
-                    {
-                        this.searchUserData.Add(userData[i]);
-                    }
+                            if ((userData[i].bal >= _bal) && (userData[i].numberSchool == numberSchool))
+                                this.searchUserData.Add(userData[i]);
+                            
+                        }
+                        break;
                 }
             }
 
-            if (this.searchUserData.Count == 0)
-            {
-                MessageBox.Show("Записів за таким запитом не знайдено");
-            }
-            else
-            {
+            if (this.searchUserData.Count == 0)            
+                MessageBox.Show("Записів за таким запитом не знайдено");            
+            else            
                 this.setDataInDataGridView(this.searchUserData, this.searchUserData.Count);
-            }
-
+            
         }
 
         private void btnResetSearch_Click(object sender, EventArgs e)
         {
             this.searchUserData.Clear();
             this.setDataInDataGridView(this.userData);
+
+            tbBal1.Clear();
+            tbBal2.Clear();
+            tbNumberSchool.Clear();
         }
     }
-
-    struct Results
-    {
-        public string name;
-        public int bal;
-        public int numberSchool;
-    };
 
 }
