@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.IO;
 
 namespace Kursach
@@ -15,7 +13,7 @@ namespace Kursach
             string path = @"log.txt";
             if (!File.Exists(path))
             {
-                using (StreamWriter sw = File.CreateText(path))
+                using (StreamWriter sw = File.AppendText(path))
                 {
                     string date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                     sw.WriteLine("[" + type + "]: " + date + " => " + message);

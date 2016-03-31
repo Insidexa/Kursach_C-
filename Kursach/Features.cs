@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
-using System.IO;
 using MetroFramework.Forms;
 
 namespace Kursach
@@ -15,10 +9,10 @@ namespace Kursach
         public Features()
         {
             InitializeComponent();
-
+            this.FormClosing += CloseProcess.FormClose;
         }
 
-        private void btnOpenWord_Click_1(object sender, EventArgs e)
+        private void btnOpenWord_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialogExcel = new OpenFileDialog();
 

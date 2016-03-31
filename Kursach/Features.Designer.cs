@@ -109,7 +109,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::Kursach.Properties.Resources.form;
-            this.pictureBox2.Location = new System.Drawing.Point(306, 200);
+            this.pictureBox2.Location = new System.Drawing.Point(309, 200);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(283, 170);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -144,7 +144,7 @@
             this.btnOpenWord.Text = "Відкрити Excel файл";
             this.btnOpenWord.Theme = MetroFramework.MetroThemeStyle.Light;
             this.btnOpenWord.UseSelectable = true;
-            this.btnOpenWord.Click += new System.EventHandler(this.btnOpenWord_Click_1);
+            this.btnOpenWord.Click += new System.EventHandler(this.btnOpenWord_Click);
             // 
             // Features
             // 
@@ -162,6 +162,7 @@
             this.Controls.Add(this.label1);
             this.MaximumSize = new System.Drawing.Size(920, 400);
             this.Name = "Features";
+            this.Style = MetroFramework.MetroColorStyle.Green;
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();

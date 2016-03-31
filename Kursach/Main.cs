@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Text;
-using System.Drawing;
 using System.Windows.Forms;
 
 using Excel = Microsoft.Office.Interop.Excel;
 using MetroFramework.Forms;
+using System.Drawing;
 
 namespace Kursach
 {
@@ -28,6 +26,11 @@ namespace Kursach
         {
             InitializeComponent();
 
+            dataGridView.DefaultCellStyle.SelectionBackColor = Color.Green;
+            dataGridView.DefaultCellStyle.SelectionForeColor = Color.White;
+          
+            this.FormClosing += CloseProcess.FormClose;
+
             this.wordApp = new WordManipulation();
 
             this.userData = new List<UserStruct>();
@@ -46,7 +49,8 @@ namespace Kursach
         /// <returns></returns>
         private bool IsNullOrWhiteSpace(string data)
         {
-            if ((data == null) || (data == "")) {
+            if ((data == null) || (data == ""))
+            {
                 return true;
             }
             else
@@ -93,55 +97,13 @@ namespace Kursach
             this.typeForm = 1;
             panelSelectBySchoolAndBal.Hide();
             panelSelectByBal.Show();
-
         }
 
-        private void buttonSelectByBalAndSchool_Click(object sender, EventArgs e)
+        private void btnSelectByBalAndSchool_Click(object sender, EventArgs e)
         {
             this.typeForm = 0;
             panelSelectBySchoolAndBal.Show();
             panelSelectByBal.Hide();
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            this.wordApp.saveToFile("", "");
-        }
-
-        private void btnFind_Click(object sender, EventArgs e)
-        {
-            this.searchUserData.Clear();
-
-            for (int i = 0; i < this.userData.Count; i++)
-            {
-                switch (this.typeForm)
-                {
-                    case BY_BAL:
-                        int bal = Convert.ToInt32(tbBal2.Text);
-                        if (this.IsNullOrWhiteSpace(tbBal2.Text)) MessageBox.Show("Введіть значення умови");
-                        else if (userData[i].bal >= bal) 
-                            this.searchUserData.Add(userData[i]);
-                        break;
-                    case BY_BAL_AND_SCHOOL:
-                        if ((this.IsNullOrWhiteSpace(tbBal1.Text)) || (this.IsNullOrWhiteSpace(tbNumberSchool.Text))) MessageBox.Show("Введіть значення умови");
-                        else
-                        {
-                            int _bal = Convert.ToInt32(tbBal1.Text);
-                            int numberSchool = Convert.ToInt32(tbNumberSchool.Text);
-
-                            if ((userData[i].bal >= _bal) && (userData[i].numberSchool == numberSchool))
-                                this.searchUserData.Add(userData[i]);
-                            
-                        }
-                        break;
-                }
-            }
-
-            if (this.searchUserData.Count == 0)            
-                MessageBox.Show("Записів за таким запитом не знайдено");            
-            else            
-                this.setDataInDataGridView(this.searchUserData, this.searchUserData.Count);
-            
         }
 
         private void btnResetSearch_Click(object sender, EventArgs e)
@@ -152,6 +114,90 @@ namespace Kursach
             tbBal1.Clear();
             tbBal2.Clear();
             tbNumberSchool.Clear();
+        }
+
+        private void btnFind_Click(object sender, EventArgs e)
+        {
+            this.searchUserData.Clear();
+
+            int i = 0;
+            bool search = true;
+
+            while ((i < this.userData.Count) && search)
+            {
+                switch (this.typeForm)
+                {
+                    case BY_BAL:
+                        if (this.IsNullOrWhiteSpace(tbBal2.Text))
+                        {
+                            search = false;
+                            MessageBox.Show("Введіть значення умови");
+                        }
+                        else if (userData[i].bal >= Convert.ToInt32(tbBal2.Text))
+                            this.searchUserData.Add(userData[i]);
+                        break;
+                    case BY_BAL_AND_SCHOOL:
+                        if ((this.IsNullOrWhiteSpace(tbBal1.Text)) || (this.IsNullOrWhiteSpace(tbNumberSchool.Text)))
+                        {
+                            search = false;
+                            MessageBox.Show("Введіть значення умови");
+                        }
+                        else
+                        {
+                            if ((userData[i].bal >= Convert.ToInt32(tbBal1.Text))
+                                && (userData[i].numberSchool == Convert.ToInt32(tbNumberSchool.Text)))
+                                this.searchUserData.Add(userData[i]);
+
+                        }
+                        break;
+                }
+                i++;
+            }
+
+            if (search)
+            {
+                if (this.searchUserData.Count == 0)
+                    MessageBox.Show("Записів за таким запитом не знайдено");
+                else
+                    this.setDataInDataGridView(this.searchUserData, this.searchUserData.Count);
+            }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (this.searchUserData.Count >= 1)
+            {
+                string FileName = "результати.docx";
+
+                SaveFileDialog sf = new SaveFileDialog();
+                sf.FileName = FileName;
+
+                if (sf.ShowDialog() == DialogResult.OK)
+                {
+                    Message msg = this.wordApp.saveToFile(sf.FileName, this.searchUserData);
+
+                    if (msg.code)
+                    {
+                        MessageBox.Show(msg.userMessage);
+                    }
+                    else
+                    {
+                        MessageBox.Show(msg.userMessage);
+                        Logger.log(msg.logMessage, Logger.ERROR);
+
+                        CloseProcess.FormClose(sender);
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Ви відмінили збереження файлу");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Даних немає");
+            }
         }
     }
 

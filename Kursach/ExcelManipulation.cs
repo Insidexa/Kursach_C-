@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 using Excel = Microsoft.Office.Interop.Excel;
 
@@ -74,9 +73,10 @@ namespace Kursach
         public void closeExcelApplication()
         {
             this.excelWorkbook.Close(0);
+            this.excelWorkbook = null;
 
             this.excelApp.Quit();
-            System.Runtime.InteropServices.Marshal.ReleaseComObject(this.excelApp);
+            this.excelApp = null;
         }
 
     }
