@@ -44,15 +44,17 @@ namespace Kursach
         protected void initializeTable()
         {
             Word.Range wrdRng = doc.Bookmarks.get_Item(ref oEndOfDoc).Range;
-            wrdRng.Font.Size = 16;
             newTable = doc.Tables.Add(wrdRng, this.minRows, this.minColumns, ref oMissing, ref oMissing);
             newTable.Borders.InsideLineStyle = Word.WdLineStyle.wdLineStyleSingle;
             newTable.Borders.OutsideLineStyle = Word.WdLineStyle.wdLineStyleSingle;
             newTable.AllowAutoFit = true;
 
-            newTable.Cell(0, 1).Range.Text = "І.П.Б";
-            newTable.Cell(0, 2).Range.Text = "Бал";
-            newTable.Cell(0, 3).Range.Text = "№ Школи";
+            /**
+             * First row
+             */
+            newTable.Cell(1, 1).Range.Text = "І.П.Б";
+            newTable.Cell(1, 2).Range.Text = "Бал";
+            newTable.Cell(1, 3).Range.Text = "№ Школи";
             newTable.Rows.Add();
         }
 

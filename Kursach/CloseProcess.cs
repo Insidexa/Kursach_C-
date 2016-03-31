@@ -18,7 +18,7 @@ namespace Kursach
             if (processesExcel.Length > 0)
                 foreach (Process proc in processesExcel)
                 {
-                    proc.Kill();
+                    proc.CloseMainWindow();
                 }
 
             GC.Collect();
