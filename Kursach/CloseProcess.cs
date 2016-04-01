@@ -12,7 +12,7 @@ namespace Kursach
             if (processesWord.Length > 0)
                 foreach (Process proc in processesWord)
                 {
-                    proc.Kill();
+                    proc.CloseMainWindow();
                 }
             Process[] processesExcel = Process.GetProcessesByName("excel");
             if (processesExcel.Length > 0)
@@ -20,7 +20,7 @@ namespace Kursach
                 {
                     proc.CloseMainWindow();
                 }
-
+            
             GC.Collect();
             Application.Exit();
         }

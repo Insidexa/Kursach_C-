@@ -11,4 +11,3 @@ C:\Users\Jashka\Documents\Visual Studio 2013\Projects\Kursach\Kursach\obj\Debug\
 C:\Users\Jashka\Documents\Visual Studio 2013\Projects\Kursach\Kursach\obj\Debug\Kursach.csproj.GenerateResource.Cache
 C:\Users\Jashka\Documents\Visual Studio 2013\Projects\Kursach\Kursach\obj\Debug\Kursach.exe
 C:\Users\Jashka\Documents\Visual Studio 2013\Projects\Kursach\Kursach\obj\Debug\Kursach.pdb
-C:\Users\Jashka\Documents\Visual Studio 2013\Projects\Kursach\Kursach\obj\Debug\Kursach.csprojResolveAssemblyReference.cache

@@ -28,6 +28,7 @@ namespace Kursach
 
             dataGridView.DefaultCellStyle.SelectionBackColor = Color.Green;
             dataGridView.DefaultCellStyle.SelectionForeColor = Color.White;
+            dataGridView.DefaultCellStyle.Font = new Font("Tahoma", 12);
           
             this.FormClosing += CloseProcess.FormClose;
 
@@ -73,6 +74,9 @@ namespace Kursach
             }
             catch (Exception e)
             {
+#if DEBUG
+                MessageBox.Show(e.Message);
+#endif
                 Logger.log(e.Message, Logger.ERROR);
                 MessageBox.Show("Внутрішня помилка програми. Зверніться до системного адміністратора!");
 
@@ -199,6 +203,7 @@ namespace Kursach
                 MessageBox.Show("Даних немає");
             }
         }
+
     }
 
 }

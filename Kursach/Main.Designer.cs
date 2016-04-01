@@ -31,6 +31,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.panelSelectBySchoolAndBal = new System.Windows.Forms.Panel();
             this.tbBal1 = new MetroFramework.Controls.MetroTextBox();
             this.tbNumberSchool = new MetroFramework.Controls.MetroTextBox();
@@ -164,7 +165,7 @@
             // 
             this.buttonSelectByBalAndSchool.FontSize = MetroFramework.MetroButtonSize.Medium;
             this.buttonSelectByBalAndSchool.FontWeight = MetroFramework.MetroButtonWeight.Regular;
-            this.buttonSelectByBalAndSchool.Location = new System.Drawing.Point(144, 0);
+            this.buttonSelectByBalAndSchool.Location = new System.Drawing.Point(141, 0);
             this.buttonSelectByBalAndSchool.Name = "buttonSelectByBalAndSchool";
             this.buttonSelectByBalAndSchool.Size = new System.Drawing.Size(129, 50);
             this.buttonSelectByBalAndSchool.Style = MetroFramework.MetroColorStyle.Green;
@@ -289,13 +290,14 @@
             // 
             // labelResults
             // 
-            this.labelResults.AutoSize = true;
             this.labelResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
-            this.labelResults.Location = new System.Drawing.Point(409, 12);
+            this.labelResults.Location = new System.Drawing.Point(417, 12);
             this.labelResults.Name = "labelResults";
+            this.labelResults.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.labelResults.Size = new System.Drawing.Size(325, 39);
             this.labelResults.TabIndex = 3;
             this.labelResults.Text = "Результати пошуку";
+            this.labelResults.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labelHeaderPanels
             // 
@@ -355,7 +357,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView.Size = new System.Drawing.Size(543, 375);
             this.dataGridView.Style = MetroFramework.MetroColorStyle.Silver;
             this.dataGridView.TabIndex = 5;
@@ -390,14 +392,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(852, 453);
+            this.ClientSize = new System.Drawing.Size(850, 450);
+            this.Controls.Add(this.labelResults);
             this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.panelSelectByBal);
             this.Controls.Add(this.labelHeaderPanels);
-            this.Controls.Add(this.labelResults);
             this.Controls.Add(this.panelControlButtons);
             this.Controls.Add(this.panelChangeForm);
             this.Controls.Add(this.panelSelectBySchoolAndBal);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Main";
             this.Style = MetroFramework.MetroColorStyle.Green;
             this.Text = "Main";
