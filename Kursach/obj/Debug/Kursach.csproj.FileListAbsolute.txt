@@ -1,9 +1,7 @@
 C:\Users\Jashka\Documents\Visual Studio 2013\Projects\Kursach\Kursach\bin\Debug\Kursach.exe.config
 C:\Users\Jashka\Documents\Visual Studio 2013\Projects\Kursach\Kursach\bin\Debug\Kursach.exe
 C:\Users\Jashka\Documents\Visual Studio 2013\Projects\Kursach\Kursach\bin\Debug\Kursach.pdb
-C:\Users\Jashka\Documents\Visual Studio 2013\Projects\Kursach\Kursach\bin\Debug\MetroFramework.Design.dll
 C:\Users\Jashka\Documents\Visual Studio 2013\Projects\Kursach\Kursach\bin\Debug\MetroFramework.dll
-C:\Users\Jashka\Documents\Visual Studio 2013\Projects\Kursach\Kursach\bin\Debug\MetroFramework.Fonts.dll
 C:\Users\Jashka\Documents\Visual Studio 2013\Projects\Kursach\Kursach\obj\Debug\Kursach.csproj.ResolveComReference.cache
 C:\Users\Jashka\Documents\Visual Studio 2013\Projects\Kursach\Kursach\obj\Debug\Kursach.Features.resources
 C:\Users\Jashka\Documents\Visual Studio 2013\Projects\Kursach\Kursach\obj\Debug\Kursach.Main.resources
@@ -11,3 +9,13 @@ C:\Users\Jashka\Documents\Visual Studio 2013\Projects\Kursach\Kursach\obj\Debug\
 C:\Users\Jashka\Documents\Visual Studio 2013\Projects\Kursach\Kursach\obj\Debug\Kursach.csproj.GenerateResource.Cache
 C:\Users\Jashka\Documents\Visual Studio 2013\Projects\Kursach\Kursach\obj\Debug\Kursach.exe
 C:\Users\Jashka\Documents\Visual Studio 2013\Projects\Kursach\Kursach\obj\Debug\Kursach.pdb
+C:\Users\Jashka\Documents\Visual Studio 2013\Projects\Kursach\Kursach\bin\Debug\System.Data.dll
+C:\Users\Jashka\Documents\Visual Studio 2013\Projects\Kursach\Kursach\bin\Debug\System.Deployment.dll
+C:\Users\Jashka\Documents\Visual Studio 2013\Projects\Kursach\Kursach\bin\Debug\System.dll
+C:\Users\Jashka\Documents\Visual Studio 2013\Projects\Kursach\Kursach\bin\Debug\System.Drawing.dll
+C:\Users\Jashka\Documents\Visual Studio 2013\Projects\Kursach\Kursach\bin\Debug\System.Windows.Forms.dll
+C:\Users\Jashka\Documents\Visual Studio 2013\Projects\Kursach\Kursach\bin\Debug\System.Xml.dll
+C:\Users\Jashka\Documents\Visual Studio 2013\Projects\Kursach\Kursach\bin\Debug\Office.dll
+C:\Users\Jashka\Documents\Visual Studio 2013\Projects\Kursach\Kursach\bin\Debug\Microsoft.Office.Interop.Excel.dll
+C:\Users\Jashka\Documents\Visual Studio 2013\Projects\Kursach\Kursach\bin\Debug\Microsoft.Office.Interop.Word.dll
+C:\Users\Jashka\Documents\Visual Studio 2013\Projects\Kursach\Kursach\bin\Debug\Microsoft.Vbe.Interop.dll

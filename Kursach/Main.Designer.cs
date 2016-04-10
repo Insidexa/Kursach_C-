@@ -163,6 +163,7 @@
             // 
             // buttonSelectByBalAndSchool
             // 
+            this.buttonSelectByBalAndSchool.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonSelectByBalAndSchool.FontSize = MetroFramework.MetroButtonSize.Medium;
             this.buttonSelectByBalAndSchool.FontWeight = MetroFramework.MetroButtonWeight.Regular;
             this.buttonSelectByBalAndSchool.Location = new System.Drawing.Point(141, 0);
@@ -403,7 +404,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Main";
             this.Style = MetroFramework.MetroColorStyle.Green;
-            this.Text = "Main";
+            this.Text = "Головне вікно";
             this.panelSelectBySchoolAndBal.ResumeLayout(false);
             this.panelSelectBySchoolAndBal.PerformLayout();
             this.panelChangeForm.ResumeLayout(false);

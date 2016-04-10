@@ -131,7 +131,6 @@
             // 
             this.metroButton1.Location = new System.Drawing.Point(0, 0);
             this.metroButton1.Name = "metroButton1";
-            this.metroButton1.Size = new System.Drawing.Size(75, 23);
             this.metroButton1.TabIndex = 0;
             this.metroButton1.UseSelectable = true;
             // 

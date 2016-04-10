@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 
-using Excel = Microsoft.Office.Interop.Excel;
 using MetroFramework.Forms;
 using System.Drawing;
 
@@ -29,7 +28,7 @@ namespace Kursach
             dataGridView.DefaultCellStyle.SelectionBackColor = Color.Green;
             dataGridView.DefaultCellStyle.SelectionForeColor = Color.White;
             dataGridView.DefaultCellStyle.Font = new Font("Tahoma", 12);
-          
+
             this.FormClosing += CloseProcess.FormClose;
 
             this.wordApp = new WordManipulation();
@@ -66,10 +65,8 @@ namespace Kursach
             {
                 this.excelApp = new ExcelManipulation(pathToExcel);
 
-                this.userData = this.excelApp.readDataFromExcel();
+                this.userData = this.excelApp.readDataFromTable();
                 this.setDataInDataGridView(this.userData);
-
-                this.excelApp.closeExcelApplication();
 
             }
             catch (Exception e)
@@ -91,8 +88,11 @@ namespace Kursach
 
             for (int i = 0; i < row; i++)
             {
-                dataGridView.Rows.Add(counter, localUserData[i].name, localUserData[i].bal, localUserData[i].numberSchool);
-                counter++;
+                if (localUserData[i].bal != 0)
+                {
+                    dataGridView.Rows.Add(counter, localUserData[i].name, localUserData[i].bal, localUserData[i].numberSchool);
+                    counter++;
+                }
             }
         }
 

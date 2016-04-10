@@ -1,82 +1,138 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using Excel = Microsoft.Office.Interop.Excel;
+using System.Data.OleDb;
+using System.Data;
+using System.Text;
 
 namespace Kursach
 {
     class ExcelManipulation
     {
-        private Excel.Application excelApp;
-        private Excel.Workbook excelWorkbook;
 
-        private Excel.Sheets excelSheets;
-        private Excel.Worksheet excelWorksheet;
-        private Excel.Range xlRange;
-
-        object[,] valueCell;
+        private string path;
 
         private List<UserStruct> userData;
 
         public ExcelManipulation(string pathToExcel)
         {
-            this.excelApp = new Excel.Application();
-            this.excelApp.Visible = false;
-
-            this.excelWorkbook = this.excelApp.Workbooks.Open(pathToExcel,
-                       0, false, 5, "", "", false, Excel.XlPlatform.xlWindows, "",
-                       true, false, 0, true, false, false);
-
-            this.excelSheets = this.excelWorkbook.Worksheets;
-            this.excelWorksheet = (Excel.Worksheet)this.excelWorkbook.Sheets[1];
-            this.xlRange = this.excelWorksheet.UsedRange;
-            this.valueCell = (object[,])this.xlRange.get_Value(Excel.XlRangeValueDataType.xlRangeValueDefault);
-
+            this.path = pathToExcel;
+            this.GetConnectionString();
             this.userData = new List<UserStruct>();
         }
 
-        public List<UserStruct> readDataFromExcel()
+        private string GetConnectionString()
         {
-            for (int row = 1; row < this.excelWorksheet.UsedRange.Rows.Count; row++)
+            Dictionary<string, string> props = new Dictionary<string, string>();
+
+            if (this.path.EndsWith(".xls"))
             {
-                UserStruct results = new UserStruct();
-
-                for (int col = 1; col <= this.excelWorksheet.UsedRange.Columns.Count; col++)
-                {
-                    if (this.valueCell[row, col] != null)
-                    {
-
-                        if (col == 1)
-                        {
-                            results.name = this.valueCell[row, col].ToString();
-                        }
-
-                        if (col == 2)
-                        {
-                            results.bal = Convert.ToInt32(this.valueCell[row, col].ToString());
-                        }
-
-                        if (col == 3)
-                        {
-                            results.numberSchool = Convert.ToInt32(this.valueCell[row, col].ToString());
-                        }
-
-                    }
-                }
-
-                this.userData.Add(results);
+                // XLS - Excel 2003 and Older
+                props["Provider"] = "Microsoft.Jet.OLEDB.4.0";
+                props["Extended Properties"] = "Excel 8.0";
+            }
+            else if ((this.path.EndsWith(".xlsx")))
+            {
+                // XLSX - Excel 2007, 2010, 2012, 2013
+                props["Provider"] = "Microsoft.ACE.OLEDB.12.0;";
+                props["Extended Properties"] = "Excel 12.0 XML";
             }
 
-            return this.userData;
+            props["Data Source"] = this.path;
+
+            StringBuilder sb = new StringBuilder();
+
+            foreach (KeyValuePair<string, string> prop in props)
+            {
+                sb.Append(prop.Key);
+                sb.Append('=');
+                sb.Append(prop.Value);
+                sb.Append(';');
+            }
+
+            return sb.ToString();
         }
 
-        public void closeExcelApplication()
+        public DataSet ReadTables()
         {
-            this.excelWorkbook.Close(0);
-            this.excelWorkbook = null;
+            DataSet ds = new DataSet();
 
-            this.excelApp.Quit();
-            this.excelApp = null;
+            string connectionString = GetConnectionString();
+
+            using (OleDbConnection conn = new OleDbConnection(connectionString))
+            {
+                conn.Open();
+                OleDbCommand cmd = new OleDbCommand();
+                cmd.Connection = conn;
+
+                // Get all Sheets in Excel File
+                DataTable dtSheet = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+
+                // Loop through all Sheets to get data
+                foreach (DataRow dr in dtSheet.Rows)
+                {
+                    string sheetName = dr["TABLE_NAME"].ToString();
+
+                    if (!sheetName.EndsWith("$"))
+                        continue;
+
+                    // Get all rows from the Sheet
+                    cmd.CommandText = "SELECT * FROM [" + sheetName + "]";
+
+                    DataTable dt = new DataTable();
+                    dt.TableName = sheetName;
+
+                    OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+                    da.Fill(dt);
+
+                    ds.Tables.Add(dt);
+                }
+
+                cmd = null;
+                conn.Close();
+            }
+
+            return ds;
+        }
+
+        public List<UserStruct> readDataFromTable()
+        {
+            DataSet ds = this.ReadTables();
+
+            foreach (DataRow myRow in ds.Tables[0].Rows)
+            {
+                UserStruct user = new UserStruct();
+                int columnNumber = 1;
+
+                foreach (DataColumn myCol in ds.Tables[0].Columns)
+                {
+
+                    if (myRow[myCol] != System.DBNull.Value)
+                    {
+                        if (columnNumber == 1)
+                        {
+                            user.name = myRow[myCol].ToString();
+
+                        }
+                        if (columnNumber == 2)
+                        {
+                            user.bal = Convert.ToInt32(myRow[myCol]);
+                        }
+                        if (columnNumber == 3)
+                        {
+                            user.numberSchool = Convert.ToInt32(myRow[myCol]);
+                        }
+                    }
+
+                    columnNumber++;
+                }
+
+                this.userData.Add(user);
+
+            }
+
+
+            return this.userData;
         }
 
     }
