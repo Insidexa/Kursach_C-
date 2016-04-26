@@ -28,6 +28,7 @@ namespace Kursach
             dataGridView.DefaultCellStyle.SelectionBackColor = Color.Green;
             dataGridView.DefaultCellStyle.SelectionForeColor = Color.White;
             dataGridView.DefaultCellStyle.Font = new Font("Tahoma", 12);
+            this.Margin = new Padding(5, 1, 5, 5);
 
             this.FormClosing += CloseProcess.FormClose;
 
@@ -76,7 +77,7 @@ namespace Kursach
 #endif
                 Logger.log(e.Message, Logger.ERROR);
                 MessageBox.Show("Внутрішня помилка програми. Зверніться до системного адміністратора!");
-
+        
                 Application.Exit();
             }
         }
@@ -202,6 +203,26 @@ namespace Kursach
             {
                 MessageBox.Show("Даних немає");
             }
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.btnSave_Click(sender, e);
+        }
+
+        private void balAndScholToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.btnSelectByBalAndSchool_Click(sender, e);
+        }
+
+        private void balToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.btnSelectByBal_Click(sender, e);
+        }
+
+        private void clearFormToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.btnResetSearch_Click(sender, e);
         }
 
     }

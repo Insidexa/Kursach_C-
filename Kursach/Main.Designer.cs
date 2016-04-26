@@ -54,11 +54,19 @@
             this.ColumnUserData = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnBal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnNumberSchool = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.формаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.balAndScholToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.balToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearFormToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelSelectBySchoolAndBal.SuspendLayout();
             this.panelChangeForm.SuspendLayout();
             this.panelSelectByBal.SuspendLayout();
             this.panelControlButtons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelSelectBySchoolAndBal
@@ -67,7 +75,7 @@
             this.panelSelectBySchoolAndBal.Controls.Add(this.tbNumberSchool);
             this.panelSelectBySchoolAndBal.Controls.Add(this.labelBal1);
             this.panelSelectBySchoolAndBal.Controls.Add(this.labelNumberSchool);
-            this.panelSelectBySchoolAndBal.Location = new System.Drawing.Point(12, 123);
+            this.panelSelectBySchoolAndBal.Location = new System.Drawing.Point(12, 175);
             this.panelSelectBySchoolAndBal.Name = "panelSelectBySchoolAndBal";
             this.panelSelectBySchoolAndBal.Size = new System.Drawing.Size(273, 253);
             this.panelSelectBySchoolAndBal.TabIndex = 0;
@@ -156,7 +164,7 @@
             // 
             this.panelChangeForm.Controls.Add(this.buttonSelectByBalAndSchool);
             this.panelChangeForm.Controls.Add(this.btnSelectByBal);
-            this.panelChangeForm.Location = new System.Drawing.Point(12, 12);
+            this.panelChangeForm.Location = new System.Drawing.Point(12, 79);
             this.panelChangeForm.Name = "panelChangeForm";
             this.panelChangeForm.Size = new System.Drawing.Size(273, 50);
             this.panelChangeForm.TabIndex = 1;
@@ -192,7 +200,7 @@
             // 
             this.panelSelectByBal.Controls.Add(this.tbBal2);
             this.panelSelectByBal.Controls.Add(this.labelBal2);
-            this.panelSelectByBal.Location = new System.Drawing.Point(12, 123);
+            this.panelSelectByBal.Location = new System.Drawing.Point(12, 175);
             this.panelSelectByBal.Name = "panelSelectByBal";
             this.panelSelectByBal.Size = new System.Drawing.Size(276, 264);
             this.panelSelectByBal.TabIndex = 1;
@@ -258,7 +266,7 @@
             this.panelControlButtons.Controls.Add(this.btnSaveWord);
             this.panelControlButtons.Controls.Add(this.btnFind);
             this.panelControlButtons.Controls.Add(this.btnResetSearch);
-            this.panelControlButtons.Location = new System.Drawing.Point(12, 393);
+            this.panelControlButtons.Location = new System.Drawing.Point(12, 445);
             this.panelControlButtons.Name = "panelControlButtons";
             this.panelControlButtons.Size = new System.Drawing.Size(276, 57);
             this.panelControlButtons.TabIndex = 2;
@@ -292,7 +300,7 @@
             // labelResults
             // 
             this.labelResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
-            this.labelResults.Location = new System.Drawing.Point(417, 12);
+            this.labelResults.Location = new System.Drawing.Point(417, 79);
             this.labelResults.Name = "labelResults";
             this.labelResults.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.labelResults.Size = new System.Drawing.Size(325, 39);
@@ -304,7 +312,7 @@
             // 
             this.labelHeaderPanels.AutoSize = true;
             this.labelHeaderPanels.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelHeaderPanels.Location = new System.Drawing.Point(51, 80);
+            this.labelHeaderPanels.Location = new System.Drawing.Point(45, 141);
             this.labelHeaderPanels.Name = "labelHeaderPanels";
             this.labelHeaderPanels.Size = new System.Drawing.Size(193, 31);
             this.labelHeaderPanels.TabIndex = 0;
@@ -345,7 +353,7 @@
             this.dataGridView.EnableHeadersVisualStyles = false;
             this.dataGridView.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.dataGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.dataGridView.Location = new System.Drawing.Point(294, 65);
+            this.dataGridView.Location = new System.Drawing.Point(291, 127);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
             this.dataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -389,11 +397,68 @@
             this.ColumnNumberSchool.Name = "ColumnNumberSchool";
             this.ColumnNumberSchool.ReadOnly = true;
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.файлToolStripMenuItem,
+            this.формаToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(20, 30);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(810, 24);
+            this.menuStrip1.TabIndex = 6;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // файлToolStripMenuItem
+            // 
+            this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saveToolStripMenuItem});
+            this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
+            this.файлToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
+            this.файлToolStripMenuItem.Text = "Файл";
+            // 
+            // формаToolStripMenuItem
+            // 
+            this.формаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.balAndScholToolStripMenuItem,
+            this.balToolStripMenuItem,
+            this.clearFormToolStripMenuItem});
+            this.формаToolStripMenuItem.Name = "формаToolStripMenuItem";
+            this.формаToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
+            this.формаToolStripMenuItem.Text = "Форма";
+            // 
+            // balAndScholToolStripMenuItem
+            // 
+            this.balAndScholToolStripMenuItem.Name = "balAndScholToolStripMenuItem";
+            this.balAndScholToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.balAndScholToolStripMenuItem.Text = "Пошук за балом та № школи";
+            this.balAndScholToolStripMenuItem.Click += new System.EventHandler(this.balAndScholToolStripMenuItem_Click);
+            // 
+            // balToolStripMenuItem
+            // 
+            this.balToolStripMenuItem.Name = "balToolStripMenuItem";
+            this.balToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.balToolStripMenuItem.Text = "Пошук тільки за балом";
+            this.balToolStripMenuItem.Click += new System.EventHandler(this.balToolStripMenuItem_Click);
+            // 
+            // clearFormToolStripMenuItem
+            // 
+            this.clearFormToolStripMenuItem.Name = "clearFormToolStripMenuItem";
+            this.clearFormToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.clearFormToolStripMenuItem.Text = "Скинути пошук";
+            this.clearFormToolStripMenuItem.Click += new System.EventHandler(this.clearFormToolStripMenuItem_Click);
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Text = "Зберегти";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(850, 450);
+            this.ClientSize = new System.Drawing.Size(850, 508);
             this.Controls.Add(this.labelResults);
             this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.panelSelectByBal);
@@ -401,8 +466,12 @@
             this.Controls.Add(this.panelControlButtons);
             this.Controls.Add(this.panelChangeForm);
             this.Controls.Add(this.panelSelectBySchoolAndBal);
+            this.Controls.Add(this.menuStrip1);
+            this.DisplayHeader = false;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Main";
+            this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
             this.Style = MetroFramework.MetroColorStyle.Green;
             this.Text = "Головне вікно";
             this.panelSelectBySchoolAndBal.ResumeLayout(false);
@@ -412,6 +481,8 @@
             this.panelSelectByBal.PerformLayout();
             this.panelControlButtons.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -441,5 +512,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnUserData;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnBal;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnNumberSchool;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem формаToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem balAndScholToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem balToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clearFormToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
     }
 }

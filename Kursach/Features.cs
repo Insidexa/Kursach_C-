@@ -12,7 +12,7 @@ namespace Kursach
             this.FormClosing += CloseProcess.FormClose;
         }
 
-        private void btnOpenWord_Click(object sender, EventArgs e)
+        private void btnOpenExcel_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialogExcel = new OpenFileDialog();
 

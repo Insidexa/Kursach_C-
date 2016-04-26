@@ -47,41 +47,41 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 42F);
-            this.label1.Location = new System.Drawing.Point(53, 51);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(26, 80);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(165, 128);
+            this.label1.Size = new System.Drawing.Size(207, 78);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Read\r\nExcel";
+            this.label1.Text = "Зчитування\r\nExcel";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
-            this.label2.Location = new System.Drawing.Point(348, 62);
+            this.label2.Location = new System.Drawing.Point(360, 62);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(202, 117);
+            this.label2.Size = new System.Drawing.Size(153, 117);
             this.label2.TabIndex = 1;
-            this.label2.Text = "job \r\nconditions\r\nfor sampling";
+            this.label2.Text = "Задання\r\nумов\r\nвибірки";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 32F);
-            this.label3.Location = new System.Drawing.Point(656, 48);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.Location = new System.Drawing.Point(656, 58);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(208, 153);
+            this.label3.Size = new System.Drawing.Size(217, 117);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Save \r\nresults to \r\nWord file";
+            this.label3.Text = "Збереження\r\nрезультатів\r\nу Word";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 42F);
-            this.label4.Location = new System.Drawing.Point(239, 80);
+            this.label4.Location = new System.Drawing.Point(248, 80);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(94, 64);
             this.label4.TabIndex = 3;
@@ -144,7 +144,7 @@
             this.btnOpenWord.Text = "Відкрити Excel файл";
             this.btnOpenWord.Theme = MetroFramework.MetroThemeStyle.Light;
             this.btnOpenWord.UseSelectable = true;
-            this.btnOpenWord.Click += new System.EventHandler(this.btnOpenWord_Click);
+            this.btnOpenWord.Click += new System.EventHandler(this.btnOpenExcel_Click);
             // 
             // Features
             // 
